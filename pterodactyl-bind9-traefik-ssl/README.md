@@ -37,3 +37,13 @@ Before we delve into the technical details, let's briefly outline the essential 
 - **SSL Certificates**: Secure Sockets Layer (SSL) certificates will be implemented to encrypt data transmissions, thereby bolstering the security of your hosted services.
 
 This guide assumes that you possess a basic understanding of Linux systems and are familiar with command-line operations. If Docker is new to you, fret not—we will cover the fundamentals as we proceed. So, without further delay, let's embark on this journey toward constructing a robust hosting environment.
+
+
+
+## **References**
+
+1. https://technotim.live/posts/traefik-portainer-ssl/
+2. https://github.com/techno-tim/techno-tim.github.io/tree/master/reference_files/traefik-portainer-ssl/traefik
+3. https://www.youtube.com/watch?v=syzwLwE3Xq4
+4. https://mpolinowski.github.io/docs/DevOps/Provisioning/2022-01-25--installing-bind9-docker/2022-01-25/
+5. https://github.com/bluepuma77/traefik-best-practice/tree/main

@@ -47,3 +47,6 @@ This guide assumes that you possess a basic understanding of Linux systems and a
 3. https://www.youtube.com/watch?v=syzwLwE3Xq4
 4. https://mpolinowski.github.io/docs/DevOps/Provisioning/2022-01-25--installing-bind9-docker/2022-01-25/
 5. https://github.com/bluepuma77/traefik-best-practice/tree/main
+
+6. https://technotim.live/posts/pterodactyl-game-server/#reverse-proxy
+7. https://github.com/EdyTheCow/docker-pterodactyl

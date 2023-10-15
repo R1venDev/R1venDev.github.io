@@ -39,6 +39,68 @@ Before we delve into the technical details, let's briefly outline the essential 
 This guide assumes that you possess a basic understanding of Linux systems and are familiar with command-line operations. If Docker is new to you, fret not—we will cover the fundamentals as we proceed. So, without further delay, let's embark on this journey toward constructing a robust hosting environment.
 
 
+## **Networks**
+
+docker network create --driver bridge --subnet 10.20.0.0/16 dns-network
+docker network create --driver bridge --subnet 10.30.0.0/16 proxy-network
+
+docker compose up -d
+
+
+This configuration is important for your physical server to be able to reach the local DNS server (bind9). Here are the steps:
+
+**Step 1: Open resolved.conf for Editing**
+
+Use a text editor to open the resolved.conf file. You can use the `nano` or `vi` editor. In this example, I'll use `nano`:
+
+```shell
+sudo nano /etc/systemd/resolved.conf
+```
+
+**Step 2: Modify resolved.conf**
+
+Inside the resolved.conf file, you should see some comments and potentially other configuration options. To specify your local DNS server, add the following line at the end of the file:
+
+```plaintext
+DNS=10.20.3.2
+```
+
+**Step 3: Save and Exit**
+
+- If you're using `nano`, press `Ctrl + O` to save the file, then press `Enter`. Next, press `Ctrl + X` to exit the editor.
+
+**Step 4: Restart systemd-resolved Service**
+
+After you've made the changes to resolved.conf, you need to restart the systemd-resolved service to apply the new configuration:
+
+```shell
+sudo systemctl restart systemd-resolved
+```
+
+**Step 5: Verify Configuration**
+
+You can check that the DNS configuration has been applied by inspecting the resolved.conf file again:
+
+```shell
+cat /etc/systemd/resolved.conf
+```
+
+You should see the DNS entry set to 10.20.3.2.
+
+**Step 6: Test DNS Resolution**
+
+You can now test whether your server can resolve DNS queries using the local DNS server. You can do this by running the `nslookup` or `dig` command:
+
+```shell
+nslookup traefik-dashboard.panel.local.example.com
+```
+
+Replace "example.com" with a domain or hostname you want to look up. If the DNS resolution works, it means your server is using the specified local DNS server running in the Docker container.
+
+That's it! Your systemd-resolved service is now configured to use your local DNS server at 10.20.3.2. This should enable your physical server to communicate with your Docker container's DNS service.
+
+
+
 
 ## **References**
 
